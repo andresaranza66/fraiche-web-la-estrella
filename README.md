@@ -1,6 +1,6 @@
-# Turborepo starter
+# FriacheWEb
 
-This Turborepo starter is maintained by the Turborepo core team.
+This is the First web page made for fraiche la estrella that is a store that sells perfums inspired in the originals one in so much afforable prices, this will help the clients of friache to get to know what we have wich perfums we have and also can send a WhatsApp message on wich one they would like to buy
 
 ## Using this example
 
