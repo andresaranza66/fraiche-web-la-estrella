@@ -10,7 +10,10 @@ export function buildWhatsAppOrderMessage(items: CartItem[]) {
   lines.push("");
 
   for (const item of items) {
-    const extras = item.feromsExtra ? " + feroms extra" : "";
+    const extrasParts: string[] = [];
+if (item.extraPerfumeGrams > 0) extrasParts.push(`+${item.extraPerfumeGrams}g perfume`);
+if (item.feromonasGrams > 0) extrasParts.push(`+${item.feromonasGrams}g feromonas`);
+const extras = extrasParts.length ? ` (${extrasParts.join(", ")})` : "";
     lines.push(`- ${item.name} (${item.sizeMl}ml) x${item.quantity}${extras}`);
   }
 

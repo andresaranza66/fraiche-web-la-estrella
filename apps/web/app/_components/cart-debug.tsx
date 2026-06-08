@@ -21,14 +21,17 @@ export function CartDebug() {
             className="rounded-lg bg-[color:var(--color-primary)] px-3 py-2 font-[family-name:var(--font-body)] text-white"
             type="button"
             onClick={() => {
-              addItem({
-                productId: "demo-1",
-                slug: "demo",
-                name: "Perfume demo",
-                sizeMl: 50 as PerfumeSizeMl,
-                feromsExtra: false,
-                quantity: 1,
-              });
+           addItem({
+              productId: "demo-1",
+              slug: "demo",
+              name: "Perfume demo",
+              sizeMl: 50 as PerfumeSizeMl,
+              baseUnitPrice: 1000,
+              unitPrice: 1000,
+              extraPerfumeGrams: 0,
+              feromonasGrams: 0,
+              quantity: 1,
+            });
             }}
           >
             Add demo item
