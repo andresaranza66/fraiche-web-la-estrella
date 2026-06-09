@@ -1,4 +1,4 @@
-import { CartDebug } from "./_components/cart-debug";
+
 import Catalogos from "./_components/Catalogos";
 import HeaderMain from "./_components/HeaderMain";
 import Prices from "./_components/Prices";
