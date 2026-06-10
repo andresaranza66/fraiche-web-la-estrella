@@ -2,12 +2,11 @@
 
 // components/Header.tsx
 
-
-import { useRouter } from "next/navigation";
 import { Search, ShoppingCart, User } from "lucide-react";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { useCart } from "../../lib/cart/cart-context";
 import Cart from "./Cart";
+import HeaderMobile from "./HeaderMobile";
 import PerfumeSearch from "./PerfumeSearch";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +30,6 @@ export default function HeaderMain({
   searchHrefBase = "/catalogos",
   hideOnScrollDown = false
 }: HeaderProps) {
-  const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
@@ -78,24 +76,28 @@ useEffect(() => {
     searchInputRef.current?.focus();
   }, [isSearchOpen]);
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+ 
 
   return (
     <>
   <header
   className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-300 transform-gpu font-[family-name:var(--font-headline)] ${
     isHeaderHidden ? "-translate-y-full" : "translate-y-0"
-  } ${isScrolled ? "h-16 bg-white shadow-sm backdrop-blur" : "h-24 bg-white"}`}
+  } ${isScrolled ? "h-16 bg-white shadow-sm backdrop-blur" : "h-16 sm:h-24 bg-white"}`}
 >
   <div className={`w-full px-6 lg:px-12 h-full transition-all duration-300 ${isScrolled ? "pt-2" : "pt-3"}`}>
     
     <div className="flex h-full items-center justify-between">
-      
+      <HeaderMobile
+        cartCount={cartCount}
+        isScrolled={isScrolled}
+        isSearchOpen={isSearchOpen} 
+        onToggleSearch={() => setIsSearchOpen((v) => !v)}
+        onCloseSearch={() => setIsSearchOpen(false)}
+        onOpenCart={() => setIsCartOpen(true)}
+      />
+
+      <div className="hidden flex-1 items-center justify-between sm:flex">
       {/* LEFT SIDE */}
       <div className={`flex items-center transition-all duration-300 ${isScrolled ? "gap-6" : "gap-10"}`}>
         
@@ -161,7 +163,7 @@ useEffect(() => {
           {showHistoriaLink ? (
             <Link
               href={historiaHref}
-              className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
+              className={`hidden md:inline font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
             >
               Nuestra Historia
             </Link>
@@ -170,7 +172,7 @@ useEffect(() => {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className={`flex items-center transition-all duration-300 ${isScrolled ? "gap-4" : "gap-5"}`}>
+      <div className={`ml-auto flex items-center transition-all duration-300 ${isScrolled ? "gap-4" : "gap-5"}`}>
         <div
               className={`transition-all duration-300 ease-out ${
         isSearchOpen
@@ -178,10 +180,9 @@ useEffect(() => {
           : "w-0 opacity-0 overflow-hidden"
           }`}
         >
-            <div className={`${isSearchOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
-
-        <PerfumeSearch autoFocus={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      </div>
+          {isSearchOpen ? (
+            <PerfumeSearch autoFocus={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+          ) : null}
       </div>
     
         <button
@@ -215,9 +216,8 @@ useEffect(() => {
         </button>
       </div>
     </div>
-
   </div>
-  
+  </div>
 </header>
 <Cart open={isCartOpen} onClose={() => setIsCartOpen(false)} />
   </>

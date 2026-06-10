@@ -4,7 +4,7 @@ import { FlaskConical, Gift, MapPin, Phone, Timer } from "lucide-react";
 
 export default function Store() {
   return (
-    <section className="w-full bg-[#fbf7ff] px-6 py-20 lg:px-24">
+    <section className="w-full bg-[#fbf7ff] sm:px-6 sm:py-20 px-4 py-32">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <p className="text-xs font-[family-name:var(--font-body)] text-xl tracking-[0.25em] text-[color:var(--color-primary-600)]">
@@ -20,18 +20,23 @@ export default function Store() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_0.65fr]">
-          <div className="relative h-full min-h-[520px] overflow-hidden rounded-2xl border border-[color:var(--color-neutral-200)] bg-white">
-            <div className="relative h-full w-full">
-              <Image
-                src="/images/locationFraiche.png"
-                alt="Mapa"
-                fill
-                className=""
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority={false}
-              />
-            </div>
-          </div>
+         <div className="relative h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[520px] overflow-hidden rounded-2xl border border-[color:var(--color-neutral-200)] bg-white">
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=6.1578785,-75.6425274&travelmode=driving"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative h-full w-full cursor-pointer"
+          >
+            <Image
+              src="/images/locationFraiche.png"
+              alt="Mapa"
+              fill
+              className=""
+              sizes="100vw"
+              priority={false}
+            />
+          </a>
+        </div>
 
           <div className="space-y-4">
             <div className="relative overflow-hidden rounded-2xl border border-[color:var(--color-neutral-200)] bg-white">

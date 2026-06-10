@@ -25,6 +25,7 @@ function useDebouncedValue<T>(value: T, delayMs: number) {
 export default function PerfumeSearch({ onClose, autoFocus }: PerfumeSearchProps) {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const onCloseRef = useRef<PerfumeSearchProps["onClose"]>(onClose);
 
   const [term, setTerm] = useState("");
   const [open, setOpen] = useState(false);
@@ -35,16 +36,21 @@ export default function PerfumeSearch({ onClose, autoFocus }: PerfumeSearchProps
   const suggestions = useQuery(api.perfumes.searchSuggestions, { q: debounced });
 
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
       const el = containerRef.current;
       if (!el) return;
       if (e.target instanceof Node && !el.contains(e.target)) {
         setOpen(false);
-        onClose?.();
+        onCloseRef.current?.();
       }
     };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+
+    document.addEventListener("click", onClickOutside);
+    return () => document.removeEventListener("click", onClickOutside);
   }, []);
 
   const goToResults = (q: string) => {

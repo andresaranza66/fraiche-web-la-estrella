@@ -9,7 +9,7 @@ import Footer from "./_components/Footer";
 export default function Home() {
   return (
     <>
-    <section className="w-full px-24 pt-24">
+    <section className="w-full sm:px-24 sm:pt-24">
       <HeaderMain />
  <Store />
   <main className="relative h-[700px] overflow-hidden flex items-center ">

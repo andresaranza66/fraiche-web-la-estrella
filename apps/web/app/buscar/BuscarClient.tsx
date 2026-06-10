@@ -47,12 +47,12 @@ export default function BuscarClient() {
                 {results.map((p) => (
                   <div
                     key={p._id}
-                    className="rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6"
+                    className="rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6 sm:p-7"
                   >
                     <div className="flex items-center gap-4">
                       <Link
                         href={`/catalogos/${p.slug}`}
-                        className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]"
+                        className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]"
                       >
                         <Image
                           src={`/images/${p.imageFileName ?? "queen.png"}`}
@@ -65,7 +65,7 @@ export default function BuscarClient() {
                       <div className="min-w-0">
                         <Link
                           href={`/catalogos/${p.slug}`}
-                          className="block truncate text-base font-semibold text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)]"
+                          className="block truncate text-lg font-semibold text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)]"
                         >
                           {p.name}
                         </Link>

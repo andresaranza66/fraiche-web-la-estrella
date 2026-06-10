@@ -125,7 +125,7 @@ const filteredPerfumes = useMemo(() => {
                     className="rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6 h-50"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]">
+                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)] ">
                          <Link href={`/catalogos/${p.slug}`}>
                         <Image
                           src={`/images/${p.imageFileName ?? "queen.png"}`}
