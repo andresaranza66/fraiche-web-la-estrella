@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -34,6 +34,16 @@ export default function PerfumeDetailPage() {
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
   const [extraPerfumeGrams, setExtraPerfumeGrams] = useState<number>(0);
   const [feromonasGrams, setFeromonasGrams] = useState<number>(0);
+  const [justAdded, setJustAdded] = useState(false);
+  const justAddedTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (justAddedTimeoutRef.current !== null) {
+        window.clearTimeout(justAddedTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const baseUnitPrice = selectedSize ? perfume?.pricesByMl?.[String(selectedSize)] ?? null : null;
   const extrasUnitPrice = extraPerfumeGrams * 1100 + feromonasGrams * 1300;
@@ -188,11 +198,28 @@ export default function PerfumeDetailPage() {
                       extraPerfumeGrams,
                       feromonasGrams,
                     });
+
+                    setJustAdded(true);
+                    if (justAddedTimeoutRef.current !== null) {
+                      window.clearTimeout(justAddedTimeoutRef.current);
+                    }
+                    justAddedTimeoutRef.current = window.setTimeout(() => {
+                      setJustAdded(false);
+                    }, 1200);
                   }}
                   className="mt-6 w-full rounded-xl bg-[color:var(--color-primary-700)] px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer hover:opacity-90 transition"
                 >
-                  Agregar Al Carrito
+                  {justAdded ? "Agregado" : "Agregar Al Carrito"}
                 </button>
+
+                <div
+                  className={`mt-2 text-sm text-[color:var(--color-neutral-700)] transition-opacity ${
+                    justAdded ? "opacity-100" : "opacity-0"
+                  }`}
+                  aria-live="polite"
+                >
+                  Agregado al carrito.
+                </div>
               </div>
             </div>
           </div>

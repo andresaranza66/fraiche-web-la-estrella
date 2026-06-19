@@ -35,6 +35,9 @@ export default function HeaderMain({
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const lastScrollYRef = useRef<number>(0);
+  const [forceShowHeader, setForceShowHeader] = useState(false);
+  const forceShowTimeoutRef = useRef<number | null>(null);
+  const prevCartCountRef = useRef<number>(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
 const { state: cartState } = useCart();
 const cartCount = useMemo(
@@ -54,6 +57,12 @@ useEffect(() => {
       return;
     }
 
+    if (forceShowHeader) {
+      setIsHeaderHidden(false);
+      lastScrollYRef.current = currentY;
+      return;
+    }
+
     const goingDown = currentY > lastScrollYRef.current;
     const beyondThreshold = currentY > 80;
 
@@ -69,7 +78,33 @@ useEffect(() => {
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
   return () => window.removeEventListener("scroll", onScroll);
-}, [hideOnScrollDown]);
+}, [forceShowHeader, hideOnScrollDown]);
+
+  useEffect(() => {
+    const prev = prevCartCountRef.current;
+    prevCartCountRef.current = cartCount;
+
+    if (cartCount <= prev) return;
+
+    setForceShowHeader(true);
+    setIsHeaderHidden(false);
+
+    if (forceShowTimeoutRef.current !== null) {
+      window.clearTimeout(forceShowTimeoutRef.current);
+    }
+
+    forceShowTimeoutRef.current = window.setTimeout(() => {
+      setForceShowHeader(false);
+    }, 1400);
+  }, [cartCount]);
+
+  useEffect(() => {
+    return () => {
+      if (forceShowTimeoutRef.current !== null) {
+        window.clearTimeout(forceShowTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isSearchOpen) return;
