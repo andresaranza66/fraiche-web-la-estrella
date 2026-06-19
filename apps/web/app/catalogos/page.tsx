@@ -21,21 +21,21 @@ export default function CatalogosPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[1.35fr_0.9fr] h-[550px]">
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[1.35fr_0.9fr] md:h-[550px]">
             <Link
               href="/catalogos/unisex"
-              className="group relative overflow-hidden rounded-2xl bg-[#071a2a] p-8 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+              className="group relative overflow-hidden rounded-2xl bg-[#071a2a] p-6 sm:p-8 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <Image
                 src="/images/strong.png"
                 alt="Colección de Unisex"
                 fill
-                className="pointer-events-none opacity-80 transition duration-500 group-hover:scale-[1.02]"
+                className="pointer-events-none object-contain opacity-80 transition duration-500 group-hover:scale-[1.02]"
                 priority
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/25 to-black/45" />
 
-              <div className="relative z-10 flex min-h-[420px] flex-col justify-end">
+              <div className="relative z-10 flex min-h-[320px] sm:min-h-[420px] flex-col justify-end">
                 <div className="inline-flex w-fit rounded-full border border-white/25 bg-white/40 px-3 py-1 text-[10px] font-medium tracking-[0.22em]">
                   MASCULINO
                 </div>
@@ -60,7 +60,7 @@ export default function CatalogosPage() {
 
             <Link
               href="/catalogos/damas"
-              className="group relative overflow-hidden rounded-2xl bg-[#7e1a3c] p-8 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/10"
+              className="group relative overflow-hidden rounded-2xl bg-[#7e1a3c] p-6 sm:p-8 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/10"
             >
               <Image
                 src="/images/dreamer.png"
@@ -70,7 +70,7 @@ export default function CatalogosPage() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/40" />
 
-              <div className="relative z-10 flex min-h-[420px] flex-col justify-end">
+              <div className="relative z-10 flex min-h-[320px] sm:min-h-[420px] flex-col justify-end">
                 <div className="inline-flex w-fit rounded-full border border-white/25 bg-white/40 px-3 py-1 text-[10px] font-medium tracking-[0.22em]">
                   FEMENINO
                 </div>

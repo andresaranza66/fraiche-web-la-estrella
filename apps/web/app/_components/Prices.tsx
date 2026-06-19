@@ -40,14 +40,7 @@ export default function Prices() {
                 <h5 className="text-neutral-950">por gramo</h5>
                 <h5 className="text-neutral-950">Potencia tu esencia con un toque magnetico</h5>
                 </div>
-                <div>
-                    <h3 className="text-purple-600 pt-15">FEROMONAS</h3>
-                </div>
-                <div className="flex flex-col gap-3 text-center px-10">
-                <h3 className="text-6xl text-[color:var(--color-primary-700)]">1.300</h3>
-                <h5 className="text-neutral-950">por gramo</h5>
-                <h5 className="text-neutral-950">Potencia tu esencia con un toque magnetico</h5>
-                </div>
+                
             </div>
             <div></div>
             <div></div>
