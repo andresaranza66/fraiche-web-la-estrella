@@ -11,9 +11,9 @@ export function buildWhatsAppOrderMessage(items: CartItem[]) {
 
   for (const item of items) {
     const extrasParts: string[] = [];
-if (item.extraPerfumeGrams > 0) extrasParts.push(`+${item.extraPerfumeGrams}g perfume`);
-if (item.feromonasGrams > 0) extrasParts.push(`+${item.feromonasGrams}g feromonas`);
-const extras = extrasParts.length ? ` (${extrasParts.join(", ")})` : "";
+    if (item.extraPerfumeGrams > 0) extrasParts.push(`+${item.extraPerfumeGrams}g perfume`);
+    if (item.feromonasGrams > 0) extrasParts.push(`+${item.feromonasGrams}g feromonas`);
+    const extras = extrasParts.length ? ` (${extrasParts.join(", ")})` : "";
     lines.push(`- ${item.name} (${item.sizeMl}ml) x${item.quantity}${extras}`);
   }
 
@@ -32,4 +32,9 @@ export function buildWhatsAppUrl(message: string) {
   }
 
   return `https://wa.me/?text=${encoded}`;
+}
+
+
+export function buildWhatsappAppointmentMessage(items: CartItem[]) {
+  return "Hola! Quiero agendar una cita.";
 }

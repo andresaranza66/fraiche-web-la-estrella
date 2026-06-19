@@ -1,8 +1,18 @@
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FlaskConical, Gift, MapPin, Phone, Timer } from "lucide-react";
+import { buildWhatsappAppointmentMessage, buildWhatsAppUrl } from "../../lib/whatsapp";
 
 export default function Store() {
+  const handleAppointment = () => {
+    const message = buildWhatsappAppointmentMessage([]);
+    const url = buildWhatsAppUrl(message);
+    window.open(url, "_blank");
+  };
+
+
   return (
     <section className="w-full bg-[#fbf7ff] sm:px-6 sm:py-20 px-4 py-32">
       <div className="mx-auto max-w-7xl">
@@ -150,16 +160,17 @@ export default function Store() {
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-xl bg-[color:var(--color-primary-700)] px-5 py-3 text-xs font-semibold tracking-wide text-white"
+              className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[color:var(--color-primary-700)] px-5 py-3 text-xs font-semibold tracking-wide text-white hover:bg-[color:var(--color-primary-800)] hover:scale-105 transition-transform"
+              onClick={handleAppointment}
             >
               AGENDAR VÍA WHATSAPP
             </button>
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-xl border border-[color:var(--color-primary-700)] bg-transparent px-5 py-3 text-xs font-semibold tracking-wide text-[color:var(--color-primary-700)]"
+            <Link
+              href="/catalogos"
+              className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-[color:var(--color-primary-700)] bg-transparent px-5 py-3 text-xs font-semibold tracking-wide text-[color:var(--color-primary-700)] hover:scale-105 transition-transform hover:bg-[color:var(--color-primary-100)]"
             >
               VER CATÁLOGO
-            </button>
+            </Link>
           </div>
         </div>
       </div>
