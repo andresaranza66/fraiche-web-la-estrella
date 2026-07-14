@@ -1,10 +1,17 @@
-export default function AdminPage() {
+import { currentUser } from "@clerk/nextjs/server";
+import AdminClient from "../_components/AdminClient";
+
+export default async function AdminPage() {
+  const user = await currentUser();
+
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-10">
-      <h1 className="font-[family-name:var(--font-headline)] text-2xl">Admin</h1>
-      <p className="mt-2 font-[family-name:var(--font-body)] text-[color:var(--color-neutral-700)]">
-        This route will be protected with Convex Auth. Next step: wire login + restrict to admins.
-      </p>
+      <div className="text-sm">
+        <h1 className="font-bold text-lg border border-blue-500 rounded px-2 py-1">
+          <span className="text-blue-500 border-[color:var(--color-neutral-200)]">User:</span> {user?.primaryEmailAddress?.emailAddress ?? "no user"}
+        </h1>
+      </div>
+      <AdminClient />
     </main>
   );
 }

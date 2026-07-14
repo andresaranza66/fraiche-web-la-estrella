@@ -1,7 +1,8 @@
 import type { QueryCtx } from "./_generated/server";
-import { mutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import type { Doc } from "./_generated/dataModel";
+import type { MutationCtx } from "./_generated/server";
 
 
 const genderValidator = v.union(
@@ -127,6 +128,7 @@ export const upsert = mutation({
     imageUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    await assertEmployee(ctx);
     const now = Date.now();
     const searchText = [args.name, ...args.tags, args.description ?? ""]
     .join(" ")
@@ -175,20 +177,54 @@ export const upsert = mutation({
 export const generateUploadUrl = mutation({
   args: {},
   handler: async (ctx) => {
+    await assertEmployee(ctx);
     return await ctx.storage.generateUploadUrl();
   },
 });
 
 export const remove = mutation({
+
   args: { id: v.id("perfumes") },
   handler: async (ctx, args) => {
+    await assertEmployee(ctx);
     await ctx.db.delete(args.id);
+  },
+});
+
+export const fixBrokenPrices = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const perfumes = await ctx.db.query("perfumes").take(1000);
+
+    let updated = 0;
+    for (const p of perfumes) {
+      const fixedPrices: Record<string, number> = {};
+      let changed = false;
+      for (const [ml, value] of Object.entries(p.pricesByMl ?? {})) {
+        if (value > 0 && value < 1000) {
+          fixedPrices[ml] = Math.round(value * 1000);
+          changed = true;
+        } else {
+          fixedPrices[ml] = value;
+        }
+      }
+
+      const newPrice = p.price === 0 ? (fixedPrices["30"] ?? p.price) : p.price;
+
+      if (changed || newPrice !== p.price) {
+        await ctx.db.patch(p._id, { pricesByMl: fixedPrices, price: newPrice });
+        updated++;
+      }
+    }
+
+    return { updated };
   },
 });
 
 export const backfillSearchText = mutation({
   args: {},
   handler: async (ctx) => {
+    await assertEmployee(ctx);
     const perfumes = await ctx.db.query("perfumes").take(1000);
 
     for (const p of perfumes) {
@@ -202,3 +238,20 @@ export const backfillSearchText = mutation({
     return { updated: perfumes.length };
   },
 });
+
+//Security For Perfumes and just having employees to add perfumes.
+async function assertEmployee(ctx: MutationCtx) {
+  const identity = await ctx.auth.getUserIdentity();
+  if (!identity?.email) {
+    throw new Error("Not authenticated");
+  }
+
+  const allowed = (process.env.EMPLOYEE_EMAILS ?? "")
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+
+  if (!allowed.includes(identity.email.toLowerCase())) {
+    throw new Error("Not authorized");
+  }
+}

@@ -162,19 +162,19 @@ export default function PerfumeDetailPage() {
 
                 <div className="mt-4 text-sm text-[color:var(--color-neutral-950)]">
                   {baseUnitPrice !== null
-                    ? `Precio base: ${baseUnitPrice.toLocaleString()}$`
+                    ? `Precio base: ${baseUnitPrice.toLocaleString("es-CO")}$`
                     : "Selecciona un tamaño para ver el precio"}
                 </div>
 
                 {baseUnitPrice !== null ? (
                   <div className="mt-2 text-sm text-[color:var(--color-neutral-700)]">
-                    Extras: {extrasUnitPrice.toLocaleString()}$
+                    Extras: {extrasUnitPrice.toLocaleString("es-CO")}$
                   </div>
                 ) : null}
 
                 {unitPrice !== null ? (
                   <div className="mt-2 text-sm font-semibold text-[color:var(--color-neutral-900)]">
-                    Total: {unitPrice.toLocaleString()}$
+                    Total: {unitPrice.toLocaleString("es-CO")}$
                   </div>
                 ) : null}
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
         className={`${playfairDisplay.variable} ${manrope.variable} min-h-dvh bg-[var(--background)] text-[var(--foreground)] antialiased`}
@@ -32,5 +34,6 @@ export default function RootLayout({
         <Providers>{children}</Providers>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
