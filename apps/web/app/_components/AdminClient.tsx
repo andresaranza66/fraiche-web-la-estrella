@@ -105,11 +105,32 @@ export default function AdminClient() {
       <input className="w-full p-2 border rounded" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="Slug (ejemplo: 'yara-lataffa')" />
 </div>
 
-      <select className="bg-[color:var(--color-neutral-100)] rounded px-2 py-1 m-2" value={gender} onChange={(e) => setGender(e.target.value as Gender)}>
-        <option value="hombres">hombres</option>
-        <option value="damas">damas</option>
-        <option value="unisex">unisex</option>
-      </select>
+      <div className="relative w-full sm:w-48">
+  <select
+    value={gender}
+    onChange={(e) => setGender(e.target.value as Gender)}
+    className=" w-full appearance-none rounded-xl border border-neutral-300 bg-[color:var(--color-neutral-100)] px-4 py-3 pr-10 text-sm font-medium text-neutral-800 shadow-sm transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none
+    "
+  >
+    <option value="hombres">Hombres</option>
+    <option value="damas">Damas</option>
+    <option value="unisex">Unisex</option>
+  </select>
+
+  <svg
+    className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M19 9l-7 7-7-7"
+    />
+  </svg>
+</div>
 
       <div className="border border-[color:var(--color-neutral-200)] rounded p-4">
         <label className="block font-bold mb-2">Imagen del perfume</label>
