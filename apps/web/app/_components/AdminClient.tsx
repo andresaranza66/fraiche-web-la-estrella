@@ -109,9 +109,7 @@ export default function AdminClient() {
   <select
     value={gender}
     onChange={(e) => setGender(e.target.value as Gender)}
-    className=" w-full appearance-none rounded-xl border border-neutral-300 bg-[color:var(--color-neutral-100)] px-4 py-3 pr-10 text-sm font-medium text-neutral-800 shadow-sm transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none
-    "
-  >
+    className="w-full appearance-none rounded-xl border border-neutral-300 bg-[color:var(--color-neutral-100)] px-4 py-3 pr-10 text-sm font-medium text-neutral-800 shadow-sm transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none">
     <option value="hombres">Hombres</option>
     <option value="damas">Damas</option>
     <option value="unisex">Unisex</option>

@@ -112,7 +112,7 @@ if (isLoading) {
                  
                   <div
                     key={p.slug} 
-                    className="rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6 h-50"
+                    className="flex h-full flex-col rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6"
                   >
                     <div className="flex items-center gap-4">
                       <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]">
@@ -147,7 +147,7 @@ if (isLoading) {
                        
                     </div>
 
-                    <div className="mt-4 flex items-center justify-between pt-6">
+                    <div className="mt-auto flex items-center justify-between pt-6">
                       <div className="text-sm text-[color:var(--color-neutral-700)]">
                         {fromPrice !== null ? `Desde ${fromPrice.toLocaleString()}$` : "Sin precio"}
                       </div>
