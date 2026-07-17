@@ -165,7 +165,7 @@ useEffect(() => {
             <div className="group relative">
               <Link
                 href={catalogosHref}
-                className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-xs" : "text-sm"}`}
+                className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
               >
                 Catalogos
               </Link>
