@@ -17,16 +17,17 @@ export default function Store() {
     <section className="w-full bg-[#fbf7ff] sm:px-6 sm:py-20 px-4 py-32">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
-          <p className="text-xs font-[family-name:var(--font-body)] text-xl tracking-[0.25em] text-[color:var(--color-primary-600)]">
+          <h1 className="sr-only"> Perfumes La Estrella  Fraiche </h1>
+          <h2 className="text-xs font-[family-name:var(--font-body)] text-xl tracking-[0.25em] text-[color:var(--color-primary-600)]">
             NUESTRA CASA
-          </p>
+          </h2>
           <h2 className="mt-3 font-[family-name:var(--font-headline)] text-4xl tracking-wide text-[color:var(--color-neutral-900)] md:text-5xl">
             DÓNDE ENCONTRARNOS
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-body)] text-sm leading-6 text-[color:var(--color-neutral-700)] font-[family-name:var(--font-body)]">
+          <h2 className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-body)] text-sm leading-6 text-[color:var(--color-neutral-700)] font-[family-name:var(--font-body)]">
             Un oasis olfativo en el corazón de La Estrella. Experimente la alta perfumería en
             un entorno diseñado para los sentidos.
-          </p>
+          </h2>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_0.65fr]">

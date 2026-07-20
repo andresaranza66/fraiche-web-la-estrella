@@ -165,7 +165,7 @@ useEffect(() => {
             <div className="group relative">
               <Link
                 href={catalogosHref}
-                className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
+                className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lgç"}`}
               >
                 Catalogos
               </Link>
@@ -243,13 +243,14 @@ useEffect(() => {
         ) : null}
       </button>
 
-        <button
-          aria-label="User Account"
+        <Link
+          href="/admin"
+          aria-label="Admin Panel"
           className="transition hover:text-gray-500 cursor-pointer"
         >
           <User size={isScrolled ? 20 : 22} />
-        </button>
-      </div>
+        </Link>
+        </div>
     </div>
   </div>
   </div>
