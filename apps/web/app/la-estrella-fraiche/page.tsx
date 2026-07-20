@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "PerfumeStore",
+  "@type": ["Store", "HealthAndBeautyBusiness"],
   name: "Fraiche La Estrella",
   image: "https://laestrellafraiche.com/images/fraiche.png",
   url: "https://laestrellafraiche.com",
