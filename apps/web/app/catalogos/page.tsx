@@ -23,7 +23,7 @@ export default function CatalogosPage() {
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[1.35fr_0.9fr] md:h-[550px]">
             <Link
-              href="/catalogos/unisex"
+              href="/catalogos/hombres"
               className="group relative overflow-hidden rounded-2xl bg-[#071a2a] p-6 sm:p-8 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <Image
