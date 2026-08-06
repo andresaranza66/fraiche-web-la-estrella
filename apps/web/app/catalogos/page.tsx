@@ -118,12 +118,12 @@ export default function CatalogosPage() {
               </div>
             </div>
 
-            <div className="relative min-h-[280px] md:min-h-[320px]">
+            <div className="relative min-h-[420px] overflow-hidden md:h-[520px] md:aspect-[2/3] md:place-self-center">
               <Image
                 src="/images/lune.png"
                 alt="Colección Unisex"
                 fill
-                className="pointer-events-none transition duration-500 group-hover:scale-[1.02]"
+                className="pointer-events-none object-cover object-center transition duration-500 group-hover:scale-[1.02]"
               />
             </div>
           </Link>
