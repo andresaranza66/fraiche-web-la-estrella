@@ -1,20 +1,10 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { FlaskConical, Gift, MapPin, Phone, Timer } from "lucide-react";
-import { buildWhatsappAppointmentMessage, buildWhatsAppUrl } from "../../lib/whatsapp";
+import {  MapPin, Phone, Timer } from "lucide-react";
 
 export default function Store() {
-  const handleAppointment = () => {
-    const message = buildWhatsappAppointmentMessage([]);
-    const url = buildWhatsAppUrl(message);
-    window.open(url, "_blank");
-  };
-
 
   return (
-    <section className="w-full bg-[#fbf7ff] sm:px-6 sm:py-20 px-4 py-32">
+    <section className="w-full bg-[#fbf7ff] sm:py-20 py-32 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h1 className="sr-only"> Perfumes La Estrella  Fraiche </h1>
@@ -24,14 +14,14 @@ export default function Store() {
           <h2 className="mt-3 font-[family-name:var(--font-headline)] text-4xl tracking-wide text-[color:var(--color-neutral-900)] md:text-5xl">
             DÓNDE ENCONTRARNOS
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-body)] text-sm leading-6 text-[color:var(--color-neutral-700)] font-[family-name:var(--font-body)]">
-            Un oasis olfativo en el corazón de La Estrella. Experimente la alta perfumería en
-            un entorno diseñado para los sentidos.
-          </p>
+          <p className="mx-auto mt-4 max-w-2xl font-[family-name:var(--font-body)] text-sm leading-6 text-[color:var(--color-neutral-700)] max-md:hidden">
+          Un oasis olfativo en el corazón de La Estrella. Experimente la alta perfumería en
+          un entorno diseñado para los sentidos.
+        </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_0.65fr]">
-         <div className="relative h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[520px] overflow-hidden rounded-2xl border border-[color:var(--color-neutral-200)] bg-white">
+         <div className="relative h-full min-h-[320px] sm:min-h-[420px] lg:min-h-[520px] overflow-hidden rounded-2xl">
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=6.1578785,-75.6425274&travelmode=driving"
             target="_blank"
@@ -42,7 +32,7 @@ export default function Store() {
               src="/images/locationFraiche.png"
               alt="Mapa"
               fill
-              className=""
+              className="p-4 rounded-xl"
               sizes="100vw"
               priority={false}
             />
@@ -50,13 +40,13 @@ export default function Store() {
         </div>
 
           <div className="space-y-4">
-            <div className="relative overflow-hidden rounded-2xl border border-[color:var(--color-neutral-200)] bg-white">
-              <div className="relative aspect-[16/10] w-full">
+            <div className="relative overflow-hidden rounded-2xl p-4">
+              <div className="relative aspect-[16/10]">
                 <Image
                   src="/images/fraiche.png"
                   alt="Tienda"
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-2xl"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority={false}
                 />
@@ -110,70 +100,7 @@ export default function Store() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-[color:var(--color-neutral-200)] pt-10">
-          <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-3">
-            <div className="space-y-3">
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                <FlaskConical className="h-5 w-5 text-[color:var(--color-primary-700)]" />
-              </div>
-              <h4 className="font-[family-name:var(--font-headline)] text-sm font-semibold text-[color:var(--color-neutral-900)]">
-                Bar de Notas
-              </h4>
-              <p className="mx-auto max-w-xs font-[family-name:var(--font-body)] text-xs leading-5 text-[color:var(--color-neutral-600)]">
-                Explore nuestra biblioteca de esencias puras y cree su propio perfil olfativo con nuestros expertos.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                <MapPin className="h-5 w-5 text-[color:var(--color-primary-700)]" />
-              </div>
-              <h4 className="font-[family-name:var(--font-headline)] text-sm font-semibold text-[color:var(--color-neutral-900)]">
-                Servicio Premium
-              </h4>
-              <p className="mx-auto max-w-xs font-[family-name:var(--font-body)] text-xs leading-5 text-[color:var(--color-neutral-600)]">
-                Asesoría personalizada de fragancias para encontrar el aroma que mejor define su personalidad.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                <Gift className="h-5 w-5 text-[color:var(--color-primary-700)]" />
-              </div>
-              <h4 className="font-[family-name:var(--font-headline)] text-sm font-semibold text-[color:var(--color-neutral-900)]">
-                Empaque de Regalo
-              </h4>
-              <p className="mx-auto max-w-xs font-[family-name:var(--font-body)] text-xs leading-5 text-[color:var(--color-neutral-600)]">
-                Cada fragancia se entrega en nuestro empaque artesanal exclusivo, listo para ser obsequiada.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16 rounded-2xl bg-[color:var(--color-primary-200)] px-6 py-12 text-center md:px-12">
-          <h3 className="font-[family-name:var(--font-headline)] text-3xl text-[color:var(--color-neutral-900)]">
-            ¿Deseas atención exclusiva?
-          </h3>
-          <p className="mx-auto mt-3 max-w-2xl font-[family-name:var(--font-body)] text-sm text-[color:var(--color-neutral-700)]">
-            Agenda una cita privada en nuestra boutique y descubre el arte de la alta perfumería sin prisas.
-          </p>
-
-          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-            <button
-              type="button"
-              className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[color:var(--color-primary-700)] px-5 py-3 text-xs font-semibold tracking-wide text-white hover:bg-[color:var(--color-primary-800)] hover:scale-105 transition-transform"
-              onClick={handleAppointment}
-            >
-              AGENDAR VÍA WHATSAPP
-            </button>
-            <Link
-              href="/catalogos"
-              className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-[color:var(--color-primary-700)] bg-transparent px-5 py-3 text-xs font-semibold tracking-wide text-[color:var(--color-primary-700)] hover:scale-105 transition-transform hover:bg-[color:var(--color-primary-100)]"
-            >
-              VER CATÁLOGO
-            </Link>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

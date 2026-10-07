@@ -115,14 +115,12 @@ useEffect(() => {
 
   return (
     <>
-  <header
-  className={`fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-300 transform-gpu font-[family-name:var(--font-headline)] ${
+ <header
+  className={`fixed inset-x-0 top-0 z-50 mx-auto w-full max-w-[1280px] border-b transition-all duration-300 transform-gpu font-[family-name:var(--font-dm-sans)] ${
     isHeaderHidden ? "-translate-y-full" : "translate-y-0"
   } ${isScrolled ? "h-16 bg-white shadow-sm backdrop-blur" : "h-16 sm:h-24 bg-white"}`}
 >
-  <div className={`w-full px-6 lg:px-12 h-full transition-all duration-300 ${isScrolled ? "pt-2" : "pt-3"}`}>
-    
-    <div className="flex h-full items-center justify-between">
+  <div className="flex h-full w-full items-center justify-between px-6 lg:px-12">
       <HeaderMobile
         cartCount={cartCount}
         isScrolled={isScrolled}
@@ -145,8 +143,8 @@ useEffect(() => {
           <Image
             src="/favicon.ico"
             alt={logoText}
-            width={110}
-            height={28}
+            width={88}
+            height={53.6}
             priority
             className={`transition-all duration-300 ${isScrolled ? "opacity-90" : "opacity-100"}`}
           />
@@ -159,34 +157,45 @@ useEffect(() => {
             {logoText}
           </div>
         </Link>
+        </div>
 
-        <nav className={`flex items-center transition-all duration-300 ${isScrolled ? "gap-4" : "gap-6"}`}>
-          {showCatalogosLink ? (
+        <nav className={`flex items-center justify-center font-[family-name:var(--font-dm-sans)] transition-all duration-300 ${isScrolled ? "gap-4" : "gap-6"}`}>
+          
+            {showHistoriaLink ? (
+            <Link
+              href={"/"}
+              className={`hidden md:inline  transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
+            >
+              Inicio
+            </Link>
+          ) : null}
+
+          {showHistoriaLink ? (
             <div className="group relative">
               <Link
                 href={catalogosHref}
-                className={`font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lgç"}`}
+                className={` transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
               >
-                Catalogos
+                Catalogo
               </Link>
 
               <div className="pointer-events-none absolute left-0 top-full pt-3 group-hover:pointer-events-auto">
                 <div className="w-48 rounded-xl border border-[color:var(--color-neutral-200)] bg-white p-2 shadow-lg opacity-0 translate-y-1 transition duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0">
                   <Link
                     href="/catalogos/hombres"
-                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] font-[family-name:var(--font-headline)]"
+                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] "
                   >
                     Hombres
                   </Link>
                   <Link
                     href="/catalogos/damas"
-                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] font-[family-name:var(--font-headline)]"
+                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] "
                   >
                     Damas
                   </Link>
                   <Link
                     href="/catalogos/unisex"
-                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] font-[family-name:var(--font-headline)]"
+                    className="block rounded-lg px-3 py-2 text-sm text-[color:var(--color-neutral-900)] transition hover:bg-[color:var(--color-neutral-100)] "
                   >
                     Unisex
                   </Link>
@@ -198,16 +207,16 @@ useEffect(() => {
           {showHistoriaLink ? (
             <Link
               href={historiaHref}
-              className={`hidden md:inline font-[family-name:var(--font-headline)] transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
+              className={`hidden md:inline  transition hover:text-gray-500 ${isScrolled ? "text-sm" : "text-lg"}`}
             >
-              Nuestra Historia
+              Donde encontrarnos
             </Link>
           ) : null}
         </nav>
-      </div>
+      
 
       {/* RIGHT SIDE */}
-      <div className={`ml-auto flex items-center transition-all duration-300 ${isScrolled ? "gap-4" : "gap-5"}`}>
+      <div className={`flex items-center justify-end transition-all duration-300 ${isScrolled ? "gap-4" : "gap-5"}`}>
         <div
               className={`transition-all duration-300 ease-out ${
         isSearchOpen
@@ -252,7 +261,6 @@ useEffect(() => {
         </Link>
         </div>
     </div>
-  </div>
   </div>
 </header>
 <Cart open={isCartOpen} onClose={() => setIsCartOpen(false)} />

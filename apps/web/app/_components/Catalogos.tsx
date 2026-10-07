@@ -3,7 +3,14 @@ import RotatingBackground from "./RotatingBackground";
 
 export default function Catalogos() {
   return (
-    <main className=" py-24">
+    <main className="bg-[var(--white)] py-24 flex flex-col items-center gap-10 bg-neutral-50">
+      <div className="text-center flex gap-2 flex-col min-h-[48px] max-w-[1184px]">
+        <h3 className="uppercase text-[var(--color-primary)] font-[family-name:var(--font-dm-sans)] font-bold">Nuestras Esencias</h3>
+        <h1 className="font-[family-name:var(--font-headline)] text-4xl font-semibold text-[var(--color-neutral-900)]">
+    Explora Nuestras Colecciones
+  </h1>
+        <h2 className="font-[family-name:var(--font-dm-sans)] text-xs">Encuentra La Inspiracion Perfecta Para Cada Momento Del Dia</h2 >
+      </div>
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-1 md:grid-cols-3">
         <Link
           href="/catalogos/hombres"

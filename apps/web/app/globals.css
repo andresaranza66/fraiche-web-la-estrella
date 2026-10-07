@@ -1,19 +1,16 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #121212;
-  --white: #ffffff;
-
-  --color-primary: #6200ee;
+@theme static {
+  --color-primary: #6200EE;
   --color-primary-950: #22005d;
   --color-primary-900: #3a0093;
   --color-primary-800: #5300cd;
   --color-primary-700: #6200ee;
   --color-primary-600: #8553ff;
-  --color-primary-500: #b69cff;
+  --color-primary-500: #6200EE;
   --color-primary-400: #cfbdff;
   --color-primary-300: #e8ddff;
+  --color-primary-250: #ede6f7;
   --color-primary-200: #f5eeff;
   --color-primary-100: #fbf7ff;
 
@@ -51,49 +48,55 @@
   --color-neutral-400: #adabaa;
   --color-neutral-300: #c8c6c5;
   --color-neutral-200: #e5e2e1;
-  --color-neutral-100: #f3f0ef;
+  --color-neutral-100: #FFFFFF;
+  --color-neutral-50: #F9F7F6;
+
+  --color-background: #F3E5FF;
+  --color-foreground: #121212;
+  --color-footer-bg: #1C1B1B;
+  --color-footer-border: #2C2A2A;
+  --color-footer-text: #9CA3AF;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --white: #ffffff;
+  --container-max-width: 1200px;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
   }
 
-  .imgLight {
+  body {
+    color: var(--color-foreground);
+    background: var(--color-background);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .imgDark {
     display: none;
   }
-  .imgDark {
-    display: unset;
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+
+    .imgLight {
+      display: none;
+    }
+
+    .imgDark {
+      display: unset;
+    }
   }
 }

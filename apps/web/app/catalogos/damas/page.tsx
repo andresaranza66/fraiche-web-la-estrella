@@ -5,12 +5,12 @@ import CatalogoGrid from "../../_components/CatalogoGrid";
 export default function DamasPage() {
   return (
     <main>
-      <HeaderMain logoText="" showCatalogosLink={false} hideOnScrollDown />
+     
 
       <section className="bg-[color:var(--color-neutral-100)] px-10 py-24">
         <div className="mx-auto max-w-[1200px]">
           {/* Static hero — renders instantly on the server */}
-          <div className="grid grid-cols-1 gap-10 rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-10 md:grid-cols-2 mt-5">
+          <div className="grid grid-cols-1 gap-10 rounded-2xl border border-[color:var(--color-neutral-200)] bg-[color:var(--color-primary-250)] p-10 md:grid-cols-2 mt-5">
             <div className="flex max-w-[620px] flex-col items-start justify-center gap-6">
               <h3 className="text-xl font-semibold text-[color:var(--color-primary-800)] font-[family-name:var(--font-headline)]">
                 Esencia Exclusiva para Ella
@@ -24,7 +24,7 @@ export default function DamasPage() {
             </div>
             <div className="flex items-center justify-center">
               <div className="relative h-[260px] w-full max-w-[500px]">
-                <Image src="/images/queen.png" alt="Damas" fill className="object-contain" priority />
+                <Image src="/images/solei.png" alt="Damas" fill className="object-contain" priority />
               </div>
             </div>
           </div>

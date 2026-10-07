@@ -30,13 +30,6 @@ export default function HeaderMobile({
           <Link href="/" className="flex items-center gap-2">
             <Image src="/favicon.ico" alt="Fraiche" width={80} height={40} priority />
           </Link>
-
-          <Link
-            href="/catalogos"
-            className="text-xs font-medium text-gray-600 transition hover:text-gray-900"
-          >
-            Catálogos
-          </Link>
         </div>
 
         <div className="flex items-center gap-4">

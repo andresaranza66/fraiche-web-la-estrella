@@ -22,7 +22,7 @@ type PerfumeWithPrice = Perfume & { fromPrice: number | null };
 
 const PerfumeCard = memo(function PerfumeCard({ perfume }: { perfume: PerfumeWithPrice }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6">
+    <div className="flex h-full flex-col rounded-2xl border border-[color:var(--color-neutral-200)] bg-[var(--color-primary-100)] p-6">
       <div className="flex items-center gap-4">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]">
           <Link href={`/catalogos/${perfume.slug}`}>

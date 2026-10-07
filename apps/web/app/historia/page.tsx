@@ -3,7 +3,7 @@ import HeaderMain from "../_components/HeaderMain";
 export default function Historia() {
   return (
     <section className="mx-8">
-        <HeaderMain/>
+      
         <main className="relative h-[900px] overflow-hidden flex items-center mt-32">
      
     

@@ -6,9 +6,9 @@ import Footer from "../_components/Footer";
 export default function CatalogosPage() {
   return (
     <>
-      <HeaderMain logoText="" showCatalogosLink={false} hideOnScrollDown />
-      <main className="px-6  pt-28 lg:px-12 bg-[color:var(--color-neutral-100)]">
-        <section className="mx-auto max-w-6xl py-24">
+     
+      <section className="px-6  pt-28 lg:px-12 bg-[color:var(--color-neutral-100)]">
+        <div className="mx-auto max-w-6xl py-24">
           <div className="flex justify-center pb-24">
             <div className="flex w-full max-w-2xl flex-col items-center gap-2 text-center">
               <h3 className="font-semibold text-[color:var(--color-primary-800)]">
@@ -127,8 +127,8 @@ export default function CatalogosPage() {
               />
             </div>
           </Link>
-        </section>
-      </main>
+        </div>
+      </section>
       <Footer />
     </>
   );

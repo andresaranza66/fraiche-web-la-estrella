@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { ClerkProvider } from "@clerk/nextjs";
+import HeaderMain from "./_components/HeaderMain";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-headline",
   display: "swap",
 });
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -51,10 +60,16 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="es">
       <body
-        className={`${playfairDisplay.variable} ${manrope.variable} min-h-dvh bg-[var(--background)] text-[var(--foreground)] antialiased`}
-      >
-        <Providers>{children}</Providers>
-      </body>
+  className={`${playfairDisplay.variable} ${manrope.variable} ${dmSans.variable} min-h-dvh bg-[var(--background)] text-[var(--foreground)] antialiased`}
+>
+  <Providers>
+    <HeaderMain />
+    <div className="mx-auto w-full max-w-[1280px] pt-16  ">
+      {children}
+    </div>
+  </Providers>
+</body>
+
     </html>
     </ClerkProvider>
   );

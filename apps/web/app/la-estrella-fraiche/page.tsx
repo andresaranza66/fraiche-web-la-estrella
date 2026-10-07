@@ -64,15 +64,15 @@ const jsonLd = {
 
 export default function LaEstrellaFraichePage() {
   return (
-    <section className="w-full sm:px-24 sm:pt-24">
-      <HeaderMain />
+    <section className="w-full">
+      
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="mx-auto max-w-3xl px-6 py-32">
+      <main className="mx-auto w-full py-32">
         <h1 className="font-[family-name:var(--font-headline)] text-5xl text-[color:var(--color-neutral-900)] md:text-6xl">
           Perfumería La Estrella Fraiche
         </h1>

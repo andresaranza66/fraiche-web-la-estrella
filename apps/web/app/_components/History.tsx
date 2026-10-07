@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function History() {
     return (
-        <main className="flex bg-neutral-100 p-8">
+        <main className="flex bg-neutral-100">
             <aside className="flex-1 w-[500px]">
                 <Image src="/images/dreamer.png" alt="History" width={500} height={500} />
             </aside>

@@ -5,7 +5,7 @@ import CatalogoGrid from "../../_components/CatalogoGrid";
 export default function UnisexPage() {
   return (
     <main>
-      <HeaderMain logoText="" showCatalogosLink={false} hideOnScrollDown />
+      
       <section className="bg-orange-50 px-10 py-24">
         <div className="mx-auto max-w-[1200px]">
           {/* Static hero — renders instantly on the server */}
@@ -21,12 +21,9 @@ export default function UnisexPage() {
                 Descubre nuestra selección de fragancias que destacan la elegancia y sofisticación de todos, Aqui encontraras las mejores fragancias sin etiquetas si es para el o para ellas, Aqui es para Todos.
               </h2>
             </div>
-            <div className="flex items-center justify-center bg-orange-200 rounded-2xl p-5 gap-5">
+            <div className="flex items-center justify-center rounded-2xl p-5 gap-5">
               <div className="relative h-[260px] w-full max-w-[250px]">
-                <Image src="/images/dreamer.png" alt="Unisex" fill className="object-contain" priority />
-              </div>
-              <div className="relative h-[260px] w-full max-w-[250px]">
-                <Image src="/images/strong.png" alt="Unisex" fill className="object-contain" priority />
+                <Image src="/images/solei.png" alt="Unisex" fill className="object-contain" priority />
               </div>
             </div>
           </div>

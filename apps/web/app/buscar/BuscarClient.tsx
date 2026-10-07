@@ -19,7 +19,7 @@ export default function BuscarClient() {
 
   return (
     <main>
-      <HeaderMain logoText="" showCatalogosLink={false} hideOnScrollDown />
+     
 
       <section className="bg-[color:var(--color-neutral-100)] px-10 py-24">
         <div className="mx-auto max-w-[1200px]">

@@ -5,6 +5,7 @@ import { ConvexReactClient } from "convex/react";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { useAuth } from "@clerk/nextjs";
 import { type ReactNode, useMemo } from "react";
+import HeaderMain from "./_components/HeaderMain";
 
 import { CartProvider } from "../lib/cart/cart-context";
 
@@ -22,7 +23,8 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <ConvexProviderWithClerk client={client} useAuth={useAuth}>
-      <CartProvider>{children}</CartProvider>
+      <CartProvider>
+        {children}</CartProvider>
     </ConvexProviderWithClerk>
   );
 }
