@@ -26,7 +26,13 @@ const PerfumeCard = memo(function PerfumeCard({ perfume }: { perfume: PerfumeWit
       <div className="flex items-center gap-4">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]">
           <Link href={`/catalogos/${perfume.slug}`}>
-            <Image src={`/images/${perfume.imageFileName || "queen.png"}`} alt={perfume.name} fill className="" />
+           <Image
+            src={perfume.imageUrl || `/images/${perfume.imageFileName || "queen.png"}`}
+            alt={perfume.name}
+            fill
+            sizes="64px"
+            className="object-contain"
+          />
           </Link>
         </div>
         <div className="min-w-0">

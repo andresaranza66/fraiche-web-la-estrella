@@ -80,10 +80,10 @@ export default function PerfumeDetailPage() {
           <div className="flex flex-col gap-8 md:flex-row">
             <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-[color:var(--color-neutral-100)] md:h-80 md:w-80">
               <Image
-                src={`/images/${perfume.imageFileName ?? "queen.png"}`}
+                src={perfume.imageUrl ?? "/images/queen.png"}
                 alt={perfume.name}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
 

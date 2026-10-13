@@ -1,7 +1,10 @@
+
+
 import Image from "next/image";
 import {  MapPin, Phone, Timer } from "lucide-react";
 
 export default function Store() {
+
 
   return (
     <section className="w-full bg-[#fbf7ff] sm:py-20 py-32 px-6">
@@ -36,6 +39,7 @@ export default function Store() {
               sizes="100vw"
               priority={false}
             />
+            
           </a>
         </div>
 

@@ -55,10 +55,11 @@ export default function BuscarClient() {
                         className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]"
                       >
                         <Image
-                          src={`/images/${p.imageFileName ?? "queen.png"}`}
+                          src={p.imageUrl || `/images/${p.imageFileName || "queen.png"}`}
                           alt={p.name}
                           fill
-                          className="object-cover"
+                          sizes="80px"
+                          className="object-contain"
                         />
                       </Link>
 

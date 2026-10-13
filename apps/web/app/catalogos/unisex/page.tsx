@@ -1,4 +1,4 @@
-import HeaderMain from "../../_components/HeaderMain";
+
 import Image from "next/image";
 import CatalogoGrid from "../../_components/CatalogoGrid";
 

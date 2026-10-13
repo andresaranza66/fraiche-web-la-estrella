@@ -27,11 +27,15 @@ async function withImageUrl(
   ctx: QueryCtx,
   perfume: Doc<"perfumes"> | null,
 ): Promise<PerfumeWithImageUrl | null> {
-  if (perfume === null) return null;
-  const derivedUrl = perfume.imageId ? await ctx.storage.getUrl(perfume.imageId) : null;
+    if (perfume === null) return null;
+
+  const derivedUrl = perfume.imageId
+    ? await ctx.storage.getUrl(perfume.imageId)
+    : null;
+
   return {
     ...perfume,
-    imageUrl: derivedUrl ?? perfume.imageUrl ?? null,
+    imageUrl: perfume.imageUrl || derivedUrl || null,
   };
 }
 
