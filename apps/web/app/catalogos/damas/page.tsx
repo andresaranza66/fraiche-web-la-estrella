@@ -1,6 +1,6 @@
 import HeaderMain from "../../_components/HeaderMain";
 import Image from "next/image";
-import CatalogoGrid from "../../_components/CatalogoGrid";
+import CatalogoGrid from "../../_components/CatalogGridServer";
 
 export default function DamasPage() {
   return (

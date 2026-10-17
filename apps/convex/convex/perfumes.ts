@@ -29,13 +29,9 @@ async function withImageUrl(
 ): Promise<PerfumeWithImageUrl | null> {
     if (perfume === null) return null;
 
-  const derivedUrl = perfume.imageId
-    ? await ctx.storage.getUrl(perfume.imageId)
-    : null;
-
   return {
     ...perfume,
-    imageUrl: perfume.imageUrl || derivedUrl || null,
+    imageUrl: perfume.imageUrl || null,
   };
 }
 

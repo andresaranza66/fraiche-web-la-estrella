@@ -3,11 +3,10 @@
 import { memo, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "convex/react";
+import { usePreloadedQuery } from "convex/react";
+import type { Preloaded } from "convex/react";
 import type { FunctionReturnType } from "convex/server";
 import { api } from "../convex/api";
-import PerfumeGridSkeleton from "./PerfumeGridSkeleton";
-import type { FunctionArgs } from "convex/server";
 
 const smellCategories = [
   { value: "citrico", label: "CÍTRICO" },
@@ -20,62 +19,81 @@ const smellCategories = [
 type Perfume = FunctionReturnType<typeof api.perfumes.listByGender>[number];
 type PerfumeWithPrice = Perfume & { fromPrice: number | null };
 
-const PerfumeCard = memo(function PerfumeCard({ perfume }: { perfume: PerfumeWithPrice }) {
+ const PerfumeCard = memo(function PerfumeCard({
+  perfume,
+}: {
+  perfume: PerfumeWithPrice;
+}) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-[color:var(--color-neutral-200)] bg-[var(--color-primary-100)] p-6">
-      <div className="flex items-center gap-4">
-        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]">
-          <Link href={`/catalogos/${perfume.slug}`}>
-           <Image
-            src={perfume.imageUrl || `/images/${perfume.imageFileName || "queen.png"}`}
-            alt={perfume.name}
-            fill
-            sizes="64px"
-            className="object-contain"
-          />
-          </Link>
-        </div>
-        <div className="min-w-0">
-          <Link href={`/catalogos/${perfume.slug}`}>
-            <div className="truncate text-base font-semibold text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)] p-3">
-              {perfume.name}
-            </div>
-          </Link>
-          <div className="mt-1 flex flex-wrap gap-2 pt-4">
-            {perfume.tags.map((t) => (
-              <span key={`${perfume.slug}-${t}`} className="rounded-full bg-[color:var(--color-neutral-100)] px-2 py-1 text-xs text-[color:var(--color-neutral-700)]">
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="mt-auto flex items-center justify-between pt-6">
-        <div className="text-sm text-[color:var(--color-neutral-700)]">
-          {perfume.fromPrice !== null ? `Desde ${perfume.fromPrice.toLocaleString()}$` : "Sin precio"}
-        </div>
-        <Link href={`/catalogos/${perfume.slug}`}>
-          <div className={`rounded-full px-3 py-1 text-xs font-semibold ${perfume.inStock ? "bg-[color:var(--color-primary-50)] text-[color:var(--color-primary-800)]" : "bg-[color:var(--color-neutral-100)] text-[color:var(--color-neutral-700)]"}`}>
-            {perfume.inStock ? "Disponible" : "Agotado"}
-          </div>
+
+    <div className="flex h-full items-center rounded-2xl border border-[color:var(--color-neutral-200)] p-4 sm:gap-6 sm:p-6">
+      <Link
+        href={`/catalogos/${perfume.slug}`}
+        className="relative block h-40 w-28 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)] sm:h-48 sm:w-36"
+      >
+        <Image
+          src={perfume.imageUrl || `/images/${perfume.imageFileName || "queen.png"}`}
+          alt={perfume.name}
+          fill
+          sizes="(min-width: 640px) 144px, 112px"
+          className="object-cover"
+        />
+      </Link>
+
+      <div className=" ml-auto min-w-0 flex-1 text-right">
+        <Link
+          href={`/catalogos/${perfume.slug}`}
+          className="block break-words text-lg font-semibold leading-snug text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)]"
+        >
+          {perfume.name}
         </Link>
+
+        <div className="mt-3 flex flex-wrap justify-end gap-2">
+          {perfume.tags.map((t) => (
+            <span
+              key={`${perfume._id}-${t}`}
+              className="rounded-full bg-[color:var(--color-neutral-100)] px-2 py-1 text-xs text-[color:var(--color-neutral-700)]"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-5 flex flex-wrap justify-end items-center gap-x-4 gap-y-2">
+          <p className="text-sm text-[color:var(--color-neutral-700)]">
+            {perfume.fromPrice !== null
+              ? `Desde ${perfume.fromPrice.toLocaleString()}$`
+              : "Sin precio"}
+          </p>
+
+          <Link
+            href={`/catalogos/${perfume.slug}`}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${
+              perfume.inStock
+                ? "bg-[color:var(--color-primary-200)] text-[color:var(--color-primary-800)]"
+                : "bg-[color:var(--color-neutral-100)] text-[color:var(--color-neutral-700)]"
+            }`}
+          >
+            {perfume.inStock ? "Disponible" : "Agotado"}
+          </Link>
+        </div>
       </div>
     </div>
   );
 });
 
 
-type Gender = FunctionArgs<typeof api.perfumes.listByGender>["gender"];
-
 type CatalogoGridProps = {
-  gender: Gender;
+  preloadedPerfumes: Preloaded<typeof api.perfumes.listByGender>;
   emptyLabel?: string;
 };
 
-export default function CatalogoGrid({ gender, emptyLabel = "Todas" }: CatalogoGridProps) {
+export default function CatalogoGrid({
+  preloadedPerfumes,
+  emptyLabel = "Todas",
+}: CatalogoGridProps) {
   const [selectedSmell, setSelectedSmell] = useState<string | null>(null);
-  const perfumes = useQuery(api.perfumes.listByGender, { gender });
-  const isLoading = perfumes === undefined;
+  const perfumes = usePreloadedQuery(preloadedPerfumes);
 
   const selectedLabel = useMemo(() => {
     if (!selectedSmell) return emptyLabel;
@@ -108,20 +126,16 @@ export default function CatalogoGrid({ gender, emptyLabel = "Todas" }: CatalogoG
         </div>
       </div>
 
-      <div className="mt-10">
+           <div className="mt-10">
         <div className="text-center text-sm text-[color:var(--color-neutral-700)] font-[family-name:var(--font-headline)]">
           Filtro activo: <span className="font-semibold">{selectedLabel}</span>
         </div>
 
-        {isLoading ? (
-          <PerfumeGridSkeleton />
-        ) : (
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredPerfumes.map((p) => (
-              <PerfumeCard key={p.slug} perfume={p} />
-            ))}
-          </div>
-        )}
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {filteredPerfumes.map((p) => (
+            <PerfumeCard key={p._id} perfume={p} />
+          ))}
+        </div>
       </div>
     </>
   );

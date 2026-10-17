@@ -43,52 +43,50 @@ export default function BuscarClient() {
                 No tenemos ese perfume.
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 {results.map((p) => (
-                  <div
-                    key={p._id}
-                    className="rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-6 sm:p-7"
+              <div
+                key={p._id}
+                className="flex items-center gap-4 rounded-2xl border border-[color:var(--color-neutral-200)] bg-white p-4 sm:gap-6 sm:p-6"
+              >
+                <Link
+                  href={`/catalogos/${p.slug}`}
+                  className="relative block h-40 w-28 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)] sm:h-48 sm:w-36"
+                >
+                  <Image
+                    src={p.imageUrl || `/images/${p.imageFileName || "queen.png"}`}
+                    alt={p.name}
+                    fill
+                    sizes="(min-width: 640px) 144px, 112px"
+                    className="object-contain"
+                  />
+                </Link>
+
+                <div className="min-w-0 flex-1">
+                  <Link
+                    href={`/catalogos/${p.slug}`}
+                    className="block break-words text-lg font-semibold leading-snug text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)]"
                   >
-                    <div className="flex items-center gap-4">
-                      <Link
-                        href={`/catalogos/${p.slug}`}
-                        className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-[color:var(--color-neutral-100)]"
+                    {p.name}
+                  </Link>
+
+                  <p className="mt-2 text-sm text-[color:var(--color-neutral-700)]">
+                    {p.gender}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span
+                        key={`${p._id}-${t}`}
+                        className="rounded-full bg-[color:var(--color-neutral-100)] px-2 py-1 text-xs text-[color:var(--color-neutral-700)]"
                       >
-                        <Image
-                          src={p.imageUrl || `/images/${p.imageFileName || "queen.png"}`}
-                          alt={p.name}
-                          fill
-                          sizes="80px"
-                          className="object-contain"
-                        />
-                      </Link>
-
-                      <div className="min-w-0">
-                        <Link
-                          href={`/catalogos/${p.slug}`}
-                          className="block truncate text-lg font-semibold text-[color:var(--color-neutral-900)] font-[family-name:var(--font-headline)]"
-                        >
-                          {p.name}
-                        </Link>
-
-                        <div className="mt-1 text-xs text-[color:var(--color-neutral-700)]">
-                          {p.gender}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <span
-                          key={`${p._id}-${t}`}
-                          className="rounded-full bg-[color:var(--color-neutral-100)] px-2 py-1 text-xs text-[color:var(--color-neutral-700)]"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                        {t}
+                      </span>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </div>
+            ))}
               </div>
             )}
           </div>

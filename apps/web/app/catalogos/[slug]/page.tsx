@@ -78,7 +78,7 @@ export default function PerfumeDetailPage() {
             <button onClick={() => router.back()} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-800n shadow-sm ring-1 ring-neutral-200 transition-all duration-200 hover:bg-neutral-50 hover:shadow-md active:scale-95 cursor-pointer mb-4">
                 <ArrowLeft size={18} /> Volver </button>
           <div className="flex flex-col gap-8 md:flex-row">
-            <div className="relative h-72 w-full overflow-hidden rounded-2xl bg-[color:var(--color-neutral-100)] md:h-80 md:w-80">
+            <div className="relative h-[400px] w-full overflow-hidden rounded-2xl bg-[color:var(--color-neutral-100)] md:h-[500px] md:w-80">
               <Image
                 src={perfume.imageUrl ?? "/images/queen.png"}
                 alt={perfume.name}
