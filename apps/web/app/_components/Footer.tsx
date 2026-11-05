@@ -38,7 +38,7 @@ export default function Footer() {
             <div className="flex gap-2 pt-4">
             <a href="https://www.instagram.com/fraichelaestrella/" target="_blank" rel="noopener noreferrer">
             <Image
-              src="/images/instagram.png"
+              src="/images/Instagram.png"
               alt="Instagram"
               width={36}
               height={36}
